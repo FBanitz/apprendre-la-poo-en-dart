@@ -1,4 +1,4 @@
 class Bot {
-  int strengh = 1;
+  int attack = 1;
   int health = 100;
 }
