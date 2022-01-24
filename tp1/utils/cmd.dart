@@ -1,6 +1,6 @@
 
 
-import 'entity.dart';
+import '../models/entity.dart';
 
 enum cmdReturn {
   turn,

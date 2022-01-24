@@ -1,5 +1,5 @@
 import 'stats.dart';
-import 'diceroll.dart';
+import '../utils/diceroll.dart';
 
 class Entity {
   String name = "";
