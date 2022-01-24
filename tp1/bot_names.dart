@@ -1,3 +1,5 @@
+// si vous tombez sur ce fichier, aidez moi à trouver des noms de robots :)
+
 final List<String> botNames = [
   "Clank-o-tron",
   "Bender",
