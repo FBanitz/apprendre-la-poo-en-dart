@@ -13,20 +13,20 @@ turn(int turnCount, Bot player, Bot opponent) {
   if (playerInitiative) {
     print('${player.formatName} prends l\'initiative\n');
     player.attack(opponent);
-    // si l'adversaire est mort, il ne peut plus attaquer
+    // si l'adversaire est détruit, il ne peut plus attaquer
     if (opponent.stats.health > 0) {
       opponent.attack(player);
     } else {
-      print('${opponent.formatName} est mort');
+      print('${opponent.formatName} est détruit');
     }
   } else {
     print('${opponent.formatName} prends l\'initiative\n');
     opponent.attack(player);
-    // si le joueur est mort, il ne peut plus attaquer
+    // si le joueur est détruit, il ne peut plus attaquer
     if (player.stats.health > 0) {
       player.attack(opponent);
     } else {
-      print('${player.formatName} est mort');
+      print('${player.formatName} est détruit');
     }
   }
   // affiche la vie restante des deux personnages

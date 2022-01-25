@@ -1,6 +1,5 @@
 import 'dart:math';
 
-
 class Utils {
   /// lance un dé
   static int diceroll() {

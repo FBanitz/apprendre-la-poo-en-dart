@@ -14,9 +14,9 @@ cmdReturn cmd(String input, Bot player, Bot opponent) {
     switch (parameter) {
       case 'p':
       case 'player': player.showStats(); break;
-      case 'e':
+      case 'o':
       case 'opponent': opponent.showStats(); break;
-      case '': print('Usage : stats [player, p | opponent, e]'); break;
+      case '': print('Usage : stats [player, p | opponent, o]'); break;
       default: print(Color.text('Paramètre inconnu', foreground: colors.yellow.index,)); break;
     }
   }
@@ -27,7 +27,7 @@ cmdReturn cmd(String input, Bot player, Bot opponent) {
 
   help(){
     print('Commandes disponibles :');
-    print('stats, s [player, p | opponent, e] : affiche les stats du personnage');
+    print('stats, s [player, p | opponent, o] : affiche les stats du personnage');
     print('quit, q : Quitte le jeu');
     print('help, h : Affiche les commandes disponibles');
   }

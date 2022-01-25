@@ -4,11 +4,14 @@ import '../utils/utils.dart';
 import 'stats.dart';
 
 class Bot {
-  String name = "";
-  int nameColor = colors.white.index;
+  Bot({required this.name, required this.stats, this.nameColor = 8,});
+
+  final String name;
+  final int nameColor;
+  final Stats stats;
   String get formatName => Color.text(name, foreground: nameColor, bold: true);
-  Stats stats = Stats();
   int get xpDrop => stats.level * (Random().nextInt(10)+ 15);
+
 
   void showStats(){
     String headDashLine = Color.text(Utils.dashes(3), foreground: colors.brightBlack.index);
@@ -42,7 +45,7 @@ class Bot {
       levelUp(show: show);
     }
     if (show) {
-      print('\nPlus que ${Color.text('${neededXp - stats.xp} XP',foreground : colors.green.index)} nécessaires pour passer au ${Color.text('niveau ${stats.level + 1}' ,foreground : colors.brightCyan.index)} !');
+      print('\nPlus que ${Color.text('${neededXp - stats.xp} XP',foreground : colors.green.index)} nécessaires pour passer au ${Color.text('niveau ${stats.level + 1}' ,foreground : colors.brightCyan.index)}');
     }
   }
 
@@ -63,5 +66,15 @@ class Bot {
     stats.health += obtainedHealth;
     stats.maxHealth += obtainedHealth;
     stats.attack += obtainedAttack;
+    repair(show: show);
+  }
+
+  void repair({bool show = false}) {
+    if (stats.health < stats.maxHealth) {
+      stats.health = stats.maxHealth;
+      if (show) {
+        print('${formatName} s\'est réparé entièrement !');
+      }
+    }
   }
 }
