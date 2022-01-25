@@ -4,8 +4,8 @@ class Stats {
   int health = 100;
   int xp = 0;
 
-  int get level => xp ~/ 100;
-  set level (int value) => xp = value * 100;
+  int level = 1;
   
-  String get health100 => (health / maxHealth * 100).round().toString() + '%'; 
+  String get health100 => (health / maxHealth * 100).round().toString() + '%';
+
 }
