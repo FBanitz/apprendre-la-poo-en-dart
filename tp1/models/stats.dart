@@ -1,5 +1,6 @@
 class Stats {
   int attack = 1;
+  int strength = 6;
   int maxHealth = 100;
   int health = 100;
   int xp = 0;

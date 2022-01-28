@@ -1,16 +1,15 @@
+import '../fight.dart';
 import '../models/bot.dart';
+import '../turn.dart';
 import 'colors.dart';
+import 'input.dart';
 
-enum cmdReturn {
-  turn,
-  quit,
-  back,
-  win
-}
 
-cmdReturn cmd(String input, Bot player, Bot opponent) {
+bool cmd(int turnCount, Bot player, Bot opponent) {
 
-  stats(String parameter) {
+  String input = Input.readText('\nTapez attack, parry ou evade pour lancer le tour et utiliser la tactique correspondante, tapez "help" pour afficher les commandes disponibles');
+
+  void stats(String parameter) {
     switch (parameter) {
       case 'p':
       case 'player': player.showStats(); break;
@@ -21,11 +20,11 @@ cmdReturn cmd(String input, Bot player, Bot opponent) {
     }
   }
 
-  sayBye(){
+  void sayBye(){
     print('Au revoir !');
   }
 
-  help(){
+  void help(){
     print('Commandes disponibles :');
     print('stats, s [player, p | opponent, o] : affiche les stats du personnage');
     print('quit, q : Quitte le jeu');
@@ -33,24 +32,32 @@ cmdReturn cmd(String input, Bot player, Bot opponent) {
   }
 
   List<String> cmd = input.toLowerCase().split(' ');
+
   switch (cmd[0]) {
     case 's':
-    case 'stats': stats(cmd.length >=2 ? cmd[1] : ''); return cmdReturn.back;
+    case 'stats': stats(cmd.length >=2 ? cmd[1] : ''); return false;
 
     case 'q':
-    case 'quit': sayBye(); return cmdReturn.quit;
+    case 'quit': sayBye(); player.stats.health = 0; return true;
 
     case 'h':
-    case 'help': help(); return cmdReturn.back;
+    case 'help': help(); return false;
 
+    case 'a': 
+    case 'attack': turn(turnCount, player, opponent, fightTactic.attack); return true;
+
+    case 'p':
+    case 'parry': turn(turnCount, player, opponent, fightTactic.parry); return true;
+    
+    case 'e':
+    case 'evade': turn(turnCount, player, opponent, fightTactic.evade); return true;
+    
     // commande secrète pour débogage uniquement ;)
     case 'dw':
     case 'debugwin': 
       print(Color.text('\n- ', foreground: 40)+Color.text('Executing totaly-not-cheating ODC3K (Orbitary Debug Cannon 3000)',background: 40)+Color.text(' -\n', foreground: 40)); 
-      return cmdReturn.win;
+      while(opponent.stats.health > 0) opponent.stats.health -= 10000; return true;
 
-    case '': return cmdReturn.turn;
-
-    default: print(Color.text('Commande inconnue', foreground: colors.yellow.index)); return cmdReturn.back;
+    default: print(Color.text('Commande inconnue', foreground: colors.yellow.index)); return false;
   }
 }

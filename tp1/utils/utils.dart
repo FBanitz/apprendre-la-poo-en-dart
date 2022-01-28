@@ -2,8 +2,8 @@ import 'dart:math';
 
 class Utils {
   /// lance un dé
-  static int diceroll() {
-    int dice = Random().nextInt(6) + 1;
+  static int diceroll([int faces = 6]) {
+    int dice = Random().nextInt(faces) + 1;
     return dice;
   }
   

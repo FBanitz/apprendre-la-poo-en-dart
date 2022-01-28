@@ -24,15 +24,6 @@ class Bot {
     print(footDashLine);
   }
 
-  void attack (Bot opponent) {
-    int dice1 = Utils.diceroll();
-    int dice2 = Utils.diceroll();
-    int subTotal = dice1 + dice2;
-    int total = stats.attack + subTotal;
-    print('${formatName} a obtenu un $dice1 et un $dice2 qui font $subTotal, auquel on ajoute son attaque : ${stats.attack} pour un total de ${Color.text('$total dégats',foreground : colors.yellow.index)} !');
-
-    opponent.stats.health -= total;
-  }
 
   void getXp (int xp, {bool show = false}) {
     stats.xp += xp;
@@ -45,7 +36,7 @@ class Bot {
       levelUp(show: show);
     }
     if (show) {
-      print('\nPlus que ${Color.text('${neededXp - stats.xp} XP',foreground : colors.green.index)} nécessaires pour passer au ${Color.text('niveau ${stats.level + 1}' ,foreground : colors.brightCyan.index)}');
+      print('\n${Color.text('${neededXp - stats.xp} XP',foreground : colors.green.index)} nécessaires pour passer au ${Color.text('niveau ${stats.level + 1}' ,foreground : colors.brightCyan.index)}');
     }
   }
 

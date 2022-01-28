@@ -9,4 +9,5 @@ final List<String> botNames = [
   "Boule de métal",
   "DumDum",
   "DumDum V2.0",
+  "Grim0xG4rd"
 ];
